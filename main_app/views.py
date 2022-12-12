@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+# from .models import Dog
+# from django.http import HttpResponse
 
 # Add the Dog class & list and view function below the imports
 class Dog: # Note that parens are optional if not inheriting from another class
