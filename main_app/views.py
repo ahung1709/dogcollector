@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Dog
 # from .models import Dog
 # from django.http import HttpResponse
@@ -18,8 +19,22 @@ from .models import Dog
 #     Dog('Quicksilver', 'German Shepherd', 'Domed forehead, a long square-cut muzzle with strong jaws and a black nose', 4)
 # ]
 
-
 # Create your views here.
+
+class DogCreate(CreateView):
+    model = Dog
+    fields = '__all__'
+    success_url = '/dogs/'
+
+class DogUpdate(UpdateView):
+    model = Dog
+    # Let's disallow the renaming of a dog by excluding the name field!
+    fields = ['breed', 'description', 'age']
+
+class DogDelete(DeleteView):
+    model = Dog
+    success_url = '/dogs/'
+
 def home(request):
     return render(request, 'home.html')
     # return HttpResponse('<h1>Hello 🐕🐕🐕</h1>')
