@@ -9,8 +9,6 @@ from .forms import FeedingForm
 class DogCreate(CreateView):
     model = Dog
     fields = ['name', 'breed', 'description', 'age']
-    # fields = '__all__'
-    # success_url = '/dogs/'
 
 class DogUpdate(UpdateView):
     model = Dog
@@ -23,7 +21,6 @@ class DogDelete(DeleteView):
 
 def home(request):
     return render(request, 'home.html')
-    # return HttpResponse('<h1>Hello 🐕🐕🐕</h1>')
 
 def about(request):
     return render(request, 'about.html')
