@@ -5,8 +5,14 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Dog, Toy
+import uuid
+import boto3
+from .models import Dog, Toy, Photo
 from .forms import FeedingForm
+
+S3_BASE_URL = 'http://s3.ca-central-1.amazonaws.com/'
+BUCKET = 'ah-dogcollector'
+
 
 # Create your views here.
 
@@ -68,6 +74,28 @@ def add_feeding(request, dog_id):
         new_feeding.dog_id = dog_id
         new_feeding.save()
     return redirect('detail', dog_id=dog_id)
+
+
+def add_photo(request, dog_id):
+    # photo-file will be the "name" attribute on the <input type="file">
+    photo_file = request.FILES.get('photo-file', None)
+    if photo_file:
+        s3 = boto3.client('s3')
+        # need a unique "key" for S3 / needs image file extension too
+        key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
+        # just in case something goes wrong
+        try:
+            s3.upload_fileobj(photo_file, BUCKET, key)
+            # build the full url string
+            url = f"{S3_BASE_URL}{BUCKET}/{key}"
+            # we can assign to dog_id or dog (if you have a dog object)
+            photo = Photo(url=url, dog_id=dog_id)
+            photo.save()
+        except:
+            print('An error occurred uploading file to S3')
+    return redirect('detail', dog_id=dog_id)
+
+
 
 class ToyList(LoginRequiredMixin, ListView):
     model = Toy
