@@ -75,7 +75,7 @@ def add_feeding(request, dog_id):
         new_feeding.save()
     return redirect('detail', dog_id=dog_id)
 
-
+@login_required
 def add_photo(request, dog_id):
     # photo-file will be the "name" attribute on the <input type="file">
     photo_file = request.FILES.get('photo-file', None)
