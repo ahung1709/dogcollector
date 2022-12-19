@@ -5,8 +5,8 @@
 
 {% for toy in toy_list %}
   <a href="{% url 'toys_detail' toy.id %}">
-    <div class="card">
-        <div class="card-content">
+    <div class="card yellow lighten-4">
+        <div class="card-content light-blue-text text-darken-4">
             <span class="card-title">{{ toy.name }}</span>
             <p>Color: {{ toy.color }}</p>
         </div>

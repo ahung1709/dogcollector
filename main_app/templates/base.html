@@ -8,27 +8,34 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Dog Collector</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Acme&family=Rubik+Gemstones&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </head>
-<body>
+<body class="teal lighten-4 light-blue-text text-darken-4" style="font-family: 'Acme', sans-serif">
     <header class="navbar-fixed">
         <nav>
-            <div class="nav-wrapper">
+            <div class="nav-wrapper orange lighten-2" style="font-family: 'Rubik Gemstones', cursive">
                 <ul>
-                    <li><a href="{% url 'home' %}" class="left brand-logo">&nbsp;&nbsp;DogCollector</a></li>
+                    <li><a href="{% url 'home' %}" class="left brand-logo purple-text">&nbsp;&nbsp;🐶 DogCollector</a></li>
                 </ul>
                 <ul class="right">
-                    <li><a href="{% url 'about' %}">About</a></li>
+                    <li><a  class="purple-text text-darken-1" href="{% url 'about' %}">About</a></li>
                     {% if user.is_authenticated %}
-                        <li><a href="{% url 'toys_create' %}">Add a Toy</a></li>
-                        <li><a href="{% url 'toys_index' %}">View All Toys</a></li>
-                        <li><a href="{% url 'dogs_create' %}">Add a Dog</a></li>
-                        <li><a href="{% url 'index' %}">View All My Dogs</a></li>
-                        <li><a href="{% url 'logout' %}">Log Out</a></li>
+                        <li><a class="purple-text text-darken-1" href="{% url 'toys_create' %}">Add a Toy</a></li>
+                        <li><a class="purple-text text-darken-1" href="{% url 'toys_index' %}">View All Toys</a></li>
+                        <li><a class="purple-text text-darken-1" href="{% url 'dogs_create' %}">Add a Dog</a></li>
+                        <li><a class="purple-text text-darken-1" href="{% url 'index' %}">View All My Dogs</a></li>
+                        <li><a class="purple-text text-darken-1" href="{% url 'logout' %}">Log Out</a></li>
                     {% else %}
-                        <li><a href="{% url 'signup' %}">Sign Up</a></li>
-                        <li><a href="{% url 'login' %}">Login</a></li>
+                        <li><a class="purple-text text-darken-1" href="{% url 'signup' %}">Sign Up</a></li>
+                        <li><a class="purple-text text-darken-1" href="{% url 'login' %}">Login</a></li>
                     {% endif %}
                 </ul>
             </div>
@@ -38,7 +45,7 @@
         {% block content %}
         {% endblock %}
     </main>
-    <footer class="page-footer">
+    <footer class="page-footer orange lighten-2 purple-text text-darken-1">
         <div class="right">All Rights Reserved, &copy; 2022 Dog Collector &nbsp;</div>
     </footer>
 </body>

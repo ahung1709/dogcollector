@@ -5,7 +5,7 @@
 
 <div class="row">
   <div class="col s6">
-    <div class="card">
+    <div class="card yellow lighten-4">
       <div class="card-content">
         <span class="card-title">{{ dog.name }}</span>
         <p>Breed: {{ dog.breed }}</p>
@@ -17,22 +17,22 @@
         {% endif %}
       </div>
       <div class="card-action">
-        <a href="{% url 'dogs_update' dog.id %}">Edit</a>
-        <a href="{% url 'dogs_delete' dog.id %}">Delete</a>
+        <a class="orange-text text-accent-4" href="{% url 'dogs_update' dog.id %}"><i class="material-icons">edit</i></a>
+        <a class="orange-text text-accent-4" href="{% url 'dogs_delete' dog.id %}"><i class="material-icons">delete_forever</i></a>
       </div>
     </div>
     <!-- Insert photo markup below this comment -->
     {% for photo in dog.photo_set.all %}
       <img class="responsive-img card-panel" src="{{photo.url}}">
     {% empty %}
-      <div class="card-panel teal-text center-align">No Photos Uploaded</div>
+      <div class="card-panel teal-text center-align yellow lighten-4">No Photos Uploaded</div>
     {% endfor %}
 
-    <form action="{% url 'add_photo' dog.id %}" enctype="multipart/form-data" method="POST" class="card-panel">
+    <form action="{% url 'add_photo' dog.id %}" enctype="multipart/form-data" method="POST" class="card-panel  yellow lighten-4">
       {% csrf_token %}
       <input type="file" name="photo-file">
       <br><br>
-      <input type="submit" class="btn" value="Upload Photo">
+      <input type="submit" class="btn orange accent-4" value="Upload Photo">
     </form>
 
   </div>
@@ -40,13 +40,13 @@
     <form action="{% url 'add_feeding' dog.id %}" method="post">
         {% csrf_token %}
         {{ feeding_form.as_p }}
-        <input type="submit" class="btn" value="Add Feeding">
+        <input type="submit" class="btn orange accent-4" value="Add Feeding">
     </form>
     <br>
     {% if dog.fed_for_today %}
       <div class="card-panel teal-text center-align">{{dog.name}} has been fed all meals for today</div>
     {% else %}
-      <div class="card-panel red-text center-align">{{dog.name}} might be hungry</div>
+      <div class="card-panel red-text center-align yellow lighten-4">{{dog.name}} might be hungry</div>
     {% endif %}
     <table class="striped">
       <thead>
@@ -79,7 +79,7 @@
           <div class="card-action">
             <form action="{% url 'unassoc_toy' dog.id toy.id %}" method="post">
                 {% csrf_token %}
-              <button type="submit" class="btn">Remove</button>
+              <button type="submit" class="btn orange accent-4">Remove</button>
             </form>
           </div>
         </div>
@@ -93,7 +93,7 @@
     <h3>Available Toys</h3>
     {% if toys.count %}
       {% for toy in toys.all %}
-        <div class="card">
+        <div class="card yellow lighten-4">
           <div class="card-content">
             <span class="card-title">
               A <span style="color: {{ toy.color }}">{{ toy.color }}</span> {{ toy.name }}
@@ -102,7 +102,7 @@
           <div class="card-action">
             <form action="{% url 'assoc_toy' dog.id toy.id %}" method="post">
               {% csrf_token %}
-              <button type="submit" class="btn">Add</button>
+              <button type="submit" class="btn orange accent-4">Add</button>
             </form>
           </div>
         </div>

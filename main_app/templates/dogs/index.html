@@ -3,9 +3,9 @@
 
 <h1>Dog list</h1>
 {% for dog in dogs%}
-<div class="card">
+<div class="card yellow lighten-4">
     <a href="{% url 'detail' dog.id %}">
-    <div class="card-content">
+    <div class="card-content light-blue-text text-darken-4">
         <span class="card-title">{{ dog.name }}</span>
         <p>Breed: {{ dog.breed }}</p>
         <p>Description: {{ dog.description }}</p>
