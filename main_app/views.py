@@ -24,7 +24,7 @@ class DogCreate(LoginRequiredMixin, CreateView):
     # valid dog form is being submitted
     def form_valid(self, form):
         # Assign the logged in user (self.request.user)
-        form.instance.user = self.request.user # form.instance is the cat
+        form.instance.user = self.request.user # form.instance is the dog
         # Let the CreateView do its job as usual
         return super().form_valid(form)
 
