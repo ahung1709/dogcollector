@@ -29,6 +29,9 @@ urlpatterns = [
     # Associate Toy w/ Dog
     path('dogs/<int:dog_id>/assoc_toy/<int:toy_id>/', views.assoc_toy, name='assoc_toy'), 
 
+    # Unassociate a toy and dog
+    path('dogs/<int:dog_id>/unassoc_toy/<int:toy_id>/', views.unassoc_toy, name='unassoc_toy'), 
+
     # Account routes
     path('accounts/signup/', views.signup, name='signup')
 ]

@@ -120,6 +120,11 @@ def assoc_toy(request, dog_id, toy_id):
     Dog.objects.get(id=dog_id).toys.add(toy_id)
     return redirect('detail', dog_id=dog_id)
 
+@login_required
+def unassoc_toy(request, dog_id, toy_id):
+    Dog.objects.get(id=dog_id).toys.remove(toy_id)
+    return redirect('detail', dog_id=dog_id)
+
 def signup(request):
   error_message = ''
   if request.method == 'POST':
